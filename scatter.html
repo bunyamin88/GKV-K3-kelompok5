@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hubungan Curah Hujan dan Produksi Tiap Provinsi</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Hubungan Curah Hujan dan Produksi Tiap Provinsi</h1>
+    <canvas id="scatterPlot" width="800" height="400"></canvas>
+    <script>
+        // Warna tetap untuk setiap provinsi
+        const provinsiColors = {
+            "Aceh": "#FF0000", // Red
+            "Sumatera Utara": "#00FF00", // Green
+            "Sumatera Barat": "#0000FF", // Blue
+            "Riau": "#FFFF00", // Yellow
+            "Jambi": "#FF00FF", // Magenta
+            "Sumatera Selatan": "#00FFFF", // Cyan
+            "Bengkulu": "#800080", // Purple
+            "Lampung": "#FFA500", // Orange
+            // Tambahkan provinsi dan warna lainnya sesuai kebutuhan
+        };
+
+        // Data manual untuk scatter plot
+        const rawData = [
+            { Provinsi: "Aceh", Tahun: 2015, CurahHujan: 1000, Produksi: 500 },
+            { Provinsi: "Aceh", Tahun: 2016, CurahHujan: 1100, Produksi: 520 },
+            { Provinsi: "Sumatera Utara", Tahun: 2015, CurahHujan: 1200, Produksi: 600 },
+            { Provinsi: "Sumatera Utara", Tahun: 2016, CurahHujan: 1300, Produksi: 620 },
+            // Tambahkan data lainnya sesuai kebutuhan
+        ];
+
+        // Fungsi untuk memproses data manual
+        const processData = (data) => {
+            const formattedData = {};
+
+            data.forEach(entry => {
+                const provinsi = entry.Provinsi;
+                const tahun = parseInt(entry.Tahun);
+                const curahHujan = parseFloat(entry.CurahHujan);
+                const produksi = parseFloat(entry.Produksi);
+
+                if (tahun >= 2015 && tahun <= 2020) {
+                    if (!formattedData[provinsi]) {
+                        formattedData[provinsi] = [];
+                    }
+                    formattedData[provinsi].push({ x: curahHujan, y: produksi });
+                }
+            });
+
+            return formattedData;
+        };
+
+        // Membuat dataset untuk tiap provinsi
+        const createDatasets = (data) => {
+            const datasets = Object.keys(data).map(provinsi => ({
+                label: provinsi,
+                data: data[provinsi],
+                backgroundColor: provinsiColors[provinsi] || getRandomColor(),
+                borderColor: 'transparent'
+            }));
+
+            return datasets;
+        };
+
+        // Fungsi untuk mendapatkan warna acak
+        const getRandomColor = () => {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        };
+
+        // Membuat chart setelah data diambil
+        const createChart = (data) => {
+            const datasets = createDatasets(data);
+
+            const ctx = document.getElementById('scatterPlot').getContext('2d');
+            new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Hubungan antara Curah Hujan dan Produksi pada Tiap Provinsi (2015-2020)',
+                            font: {
+                                size: 18
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    const dataset = tooltipItem.dataset;
+                                    const dataPoint = dataset.data[tooltipItem.dataIndex];
+                                    return `${dataset.label}: Curah Hujan: ${dataPoint.x} mm, Produksi: ${dataPoint.y}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            title: {
+                                display: true,
+                                text: 'Curah Hujan (mm)',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Produksi',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        };
+
+        // Proses data manual dan buat chart
+        const data = processData(rawData);
+        createChart(data);
+    </script>
+</body>
+</html>
