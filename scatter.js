@@ -1,81 +1,71 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Warna tetap untuk setiap provinsi
-    const provinsiColors = {
-        "Aceh": "#FF0000", // Red
-        "Sumatera Utara": "#00FF00", // Green
-        "Sumatera Barat": "#0000FF", // Blue
-        "Riau": "#FFFF00", // Yellow
-        "Jambi": "#FF00FF", // Magenta
-        "Sumatera Selatan": "#00FFFF", // Cyan
-        "Bengkulu": "#800080", // Purple
-        "Lampung": "#FFA500", // Orange
-    };
-
     // Data manual untuk scatter plot
     const rawData = [
-        // Data Aceh
-        { Provinsi: "Aceh", Tahun: 2015, CurahHujan: 1000, Produksi: 500 },
-        { Provinsi: "Aceh", Tahun: 2016, CurahHujan: 1100, Produksi: 520 },
-        { Provinsi: "Aceh", Tahun: 2017, CurahHujan: 1050, Produksi: 510 },
-        { Provinsi: "Aceh", Tahun: 2018, CurahHujan: 1200, Produksi: 530 },
-        { Provinsi: "Aceh", Tahun: 2019, CurahHujan: 1250, Produksi: 540 },
-        { Provinsi: "Aceh", Tahun: 2020, CurahHujan: 1300, Produksi: 550 },
+        { Provinsi: "Aceh", Tahun: 2015, CurahHujan: 1575.00, Produksi: 1956940.00 },
+        { Provinsi: "Aceh", Tahun: 2016, CurahHujan: 1096.00, Produksi: 2180754.00 },
+        { Provinsi: "Aceh", Tahun: 2017, CurahHujan: 1905.90, Produksi: 2478922.00 },
+        { Provinsi: "Aceh", Tahun: 2018, CurahHujan: 1427.80, Produksi: 1751996.94 },
+        { Provinsi: "Aceh", Tahun: 2019, CurahHujan: 1931.40, Produksi: 1714437.60 },
+        { Provinsi: "Aceh", Tahun: 2020, CurahHujan: 1619.20, Produksi: 1861567.10 },
 
-        // Data Sumatera Utara
-        { Provinsi: "Sumatera Utara", Tahun: 2015, CurahHujan: 1200, Produksi: 600 },
-        { Provinsi: "Sumatera Utara", Tahun: 2016, CurahHujan: 1300, Produksi: 620 },
-        { Provinsi: "Sumatera Utara", Tahun: 2017, CurahHujan: 1250, Produksi: 610 },
-        { Provinsi: "Sumatera Utara", Tahun: 2018, CurahHujan: 1400, Produksi: 630 },
-        { Provinsi: "Sumatera Utara", Tahun: 2019, CurahHujan: 1450, Produksi: 640 },
-        { Provinsi: "Sumatera Utara", Tahun: 2020, CurahHujan: 1500, Produksi: 650 },
+        { Provinsi: "Sumatera Utara", Tahun: 2015, CurahHujan: 975.90, Produksi: 4044829.00 },
+        { Provinsi: "Sumatera Utara", Tahun: 2016, CurahHujan: 2384.00, Produksi: 4387035.90 },
+        { Provinsi: "Sumatera Utara", Tahun: 2017, CurahHujan: 3190.00, Produksi: 4669777.50 },
+        { Provinsi: "Sumatera Utara", Tahun: 2018, CurahHujan: 2431.00, Produksi: 2108284.72 },
+        { Provinsi: "Sumatera Utara", Tahun: 2019, CurahHujan: 1401.60, Produksi: 2078901.59 },
+        { Provinsi: "Sumatera Utara", Tahun: 2020, CurahHujan: 1648.30, Produksi: 2076280.01 },
 
-        // Data Sumatera Barat
-        { Provinsi: "Sumatera Barat", Tahun: 2015, CurahHujan: 900, Produksi: 450 },
-        { Provinsi: "Sumatera Barat", Tahun: 2016, CurahHujan: 950, Produksi: 460 },
-        { Provinsi: "Sumatera Barat", Tahun: 2017, CurahHujan: 1000, Produksi: 470 },
-        { Provinsi: "Sumatera Barat", Tahun: 2018, CurahHujan: 1050, Produksi: 480 },
-        { Provinsi: "Sumatera Barat", Tahun: 2019, CurahHujan: 1100, Produksi: 490 },
-        { Provinsi: "Sumatera Barat", Tahun: 2020, CurahHujan: 1150, Produksi: 500 },
 
-        // Data Riau
-        { Provinsi: "Riau", Tahun: 2015, CurahHujan: 800, Produksi: 400 },
-        { Provinsi: "Riau", Tahun: 2016, CurahHujan: 850, Produksi: 410 },
-        { Provinsi: "Riau", Tahun: 2017, CurahHujan: 900, Produksi: 420 },
-        { Provinsi: "Riau", Tahun: 2018, CurahHujan: 950, Produksi: 430 },
-        { Provinsi: "Riau", Tahun: 2019, CurahHujan: 1000, Produksi: 440 },
-        { Provinsi: "Riau", Tahun: 2020, CurahHujan: 1050, Produksi: 450 },
+        
+        { Provinsi: "Sumatera Barat", Tahun: 2015, CurahHujan: 3548.00, Produksi: 2550609.00 },
+        { Provinsi: "Sumatera Barat", Tahun: 2016, CurahHujan: 4205.20, Produksi: 2487929.00 },
+        { Provinsi: "Sumatera Barat", Tahun: 2017, CurahHujan: 4553.00, Produksi: 2810425.00 },
+        { Provinsi: "Sumatera Barat", Tahun: 2018, CurahHujan: 327.33, Produksi: 1483076.48 },
+        { Provinsi: "Sumatera Barat", Tahun: 2019, CurahHujan: 4757.50, Produksi: 1482996.01 },
+        { Provinsi: "Sumatera Barat", Tahun: 2020, CurahHujan: 4072.70, Produksi: 1450839.74 },
 
-        // Data Jambi
-        { Provinsi: "Jambi", Tahun: 2015, CurahHujan: 700, Produksi: 350 },
-        { Provinsi: "Jambi", Tahun: 2016, CurahHujan: 750, Produksi: 360 },
-        { Provinsi: "Jambi", Tahun: 2017, CurahHujan: 800, Produksi: 370 },
-        { Provinsi: "Jambi", Tahun: 2018, CurahHujan: 850, Produksi: 380 },
-        { Provinsi: "Jambi", Tahun: 2019, CurahHujan: 900, Produksi: 390 },
-        { Provinsi: "Jambi", Tahun: 2020, CurahHujan: 950, Produksi: 400 },
+
+        { Provinsi: "Riau", Tahun: 2016, CurahHujan: 2105.60, Produksi: 325826.00 },
+        { Provinsi: "Riau", Tahun: 2017, CurahHujan: 2982.90, Produksi: 337421.00 },
+        { Provinsi: "Riau", Tahun: 2018, CurahHujan: 1837.10, Produksi: 266375.53 },
+        { Provinsi: "Riau", Tahun: 2019, CurahHujan: 1608.30, Produksi: 230873.97 },
+        { Provinsi: "Riau", Tahun: 2020, CurahHujan: 2584.90, Produksi: 269344.05 },
+
+        
+        { Provinsi: "Jambi", Tahun: 2015, CurahHujan: 1694.90, Produksi: 541486.00 },
+        { Provinsi: "Jambi", Tahun: 2016, CurahHujan: 1502.40, Produksi: 642095.00 },
+        { Provinsi: "Jambi", Tahun: 2017, CurahHujan: 2193.20, Produksi: 678127.00 },
+        { Provinsi: "Jambi", Tahun: 2018, CurahHujan: 2182.30, Produksi: 383045.74 },
+        { Provinsi: "Jambi", Tahun: 2019, CurahHujan: 1773.40, Produksi: 309932.68 },
+        { Provinsi: "Jambi", Tahun: 2020, CurahHujan: 2303.80, Produksi: 374376.27 },
+
 
         // Data Sumatera Selatan
-        { Provinsi: "Sumatera Selatan", Tahun: 2015, CurahHujan: 1100, Produksi: 550 },
-        { Provinsi: "Sumatera Selatan", Tahun: 2016, CurahHujan: 1150, Produksi: 560 },
-        { Provinsi: "Sumatera Selatan", Tahun: 2017, CurahHujan: 1200, Produksi: 570 },
-        { Provinsi: "Sumatera Selatan", Tahun: 2018, CurahHujan: 1250, Produksi: 580 },
-        { Provinsi: "Sumatera Selatan", Tahun: 2019, CurahHujan: 1300, Produksi: 590 },
-        { Provinsi: "Sumatera Selatan", Tahun: 2020, CurahHujan: 1350, Produksi: 600 },
+        { Provinsi: "Sumatera Selatan", Tahun: 2015, CurahHujan: 1947.20, Produksi: 4247922.00 },
+        { Provinsi: "Sumatera Selatan", Tahun: 2016, CurahHujan: 3477.90, Produksi: 4881089.00 },
+        { Provinsi: "Sumatera Selatan", Tahun: 2017, CurahHujan: 2489.50, Produksi: 4807430.00 },
+        { Provinsi: "Sumatera Selatan", Tahun: 2018, CurahHujan: 2252.40, Produksi: 2994191.84 },
+        { Provinsi: "Sumatera Selatan", Tahun: 2019, CurahHujan: 1655.50, Produksi: 2603396.24 },
+        { Provinsi: "Sumatera Selatan", Tahun: 2020, CurahHujan: 2300.20, Produksi: 2696877.46 },
 
-        // Data Bengkulu
-        { Provinsi: "Bengkulu", Tahun: 2015, CurahHujan: 1000, Produksi: 500 },
-        { Provinsi: "Bengkulu", Tahun: 2016, CurahHujan: 1050, Produksi: 510 },
-        { Provinsi: "Bengkulu", Tahun: 2017, CurahHujan: 1100, Produksi: 520 },
-        { Provinsi: "Bengkulu", Tahun: 2018, CurahHujan: 1150, Produksi: 530 },
-        { Provinsi: "Bengkulu", Tahun: 2019, CurahHujan: 1200, Produksi: 540 },
-        { Provinsi: "Bengkulu", Tahun: 2020, CurahHujan: 1250, Produksi: 550 },
+
+        { Provinsi: "Bengkulu", Tahun: 2015, CurahHujan: 2668.90, Produksi: 578654.00 },
+        { Provinsi: "Bengkulu", Tahun: 2016, CurahHujan: 3350.10, Produksi: 629224.00 },
+        { Provinsi: "Bengkulu", Tahun: 2017, CurahHujan: 3949.80, Produksi: 714017.00 },
+        { Provinsi: "Bengkulu", Tahun: 2018, CurahHujan: 3649.90, Produksi: 288810.52 },
+        { Provinsi: "Bengkulu", Tahun: 2019, CurahHujan: 1786.20, Produksi: 296472.07 },
+        { Provinsi: "Bengkulu", Tahun: 2020, CurahHujan: 4144.00, Produksi: 296925.16 },
+
 
         // Data Lampung
-        { Provinsi: "Lampung", Tahun: 2015, CurahHujan: 900, Produksi: 450 },
-        { Provinsi: "Lampung", Tahun: 2016, CurahHujan: 950, Produksi: 460 },
-        { Provinsi: "Lampung", Tahun: 2017, CurahHujan: 1000, Produksi: 470 },
-        { Provinsi: "Lampung", Tahun: 2018, CurahHujan: 1050, Produksi: 480 },
-        { Provinsi: "Lampung", Tahun: 2019, CurahHujan: 1100, Produksi: 490 },
-        { Provinsi: "Lampung", Tahun: 2020, CurahHujan: 1150, Produksi: 500 },
+        { Provinsi: "Lampung", Tahun: 2015, CurahHujan: 1628.10, Produksi: 3641895.00 },
+        { Provinsi: "Lampung", Tahun: 2016, CurahHujan: 2317.60, Produksi: 3831923.00 },
+        { Provinsi: "Lampung", Tahun: 2017, CurahHujan: 1825.10, Produksi: 4090654.00 },
+        { Provinsi: "Lampung", Tahun: 2018, CurahHujan: 1385.80, Produksi: 2488641.91 },
+        { Provinsi: "Lampung", Tahun: 2019, CurahHujan: 1706.40, Produksi: 2164089.33 },
+        { Provinsi: "Lampung", Tahun: 2020, CurahHujan: 2211.30, Produksi: 2604913.29 },
+
+
     ];
 
     // Fungsi untuk memproses data manual
@@ -84,100 +74,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
         data.forEach(entry => {
             const provinsi = entry.Provinsi;
-            const tahun = parseInt(entry.Tahun);
-            const curahHujan = parseFloat(entry.CurahHujan);
-            const produksi = parseFloat(entry.Produksi);
+            const tahun = entry.Tahun;
+            const curahHujan = entry.CurahHujan;
+            const produksi = entry.Produksi;
 
-            if (tahun >= 2015 && tahun <= 2020) {
-                if (!formattedData[provinsi]) {
-                    formattedData[provinsi] = [];
-                }
-                formattedData[provinsi].push({ x: curahHujan, y: produksi });
+            if (!formattedData[provinsi]) {
+                formattedData[provinsi] = { x: [], y: [], mode: 'markers', type: 'scatter', name: provinsi };
             }
+
+            formattedData[provinsi].x.push(curahHujan);
+            formattedData[provinsi].y.push(produksi);
         });
 
-        return formattedData;
+        return Object.values(formattedData);
     };
 
-    // Membuat dataset untuk tiap provinsi
-    const createDatasets = (data) => {
-        const datasets = Object.keys(data).map(provinsi => ({
-            label: provinsi,
-            data: data[provinsi],
-            backgroundColor: provinsiColors[provinsi] || getRandomColor(),
-            borderColor: 'transparent'
-        }));
-
-        return datasets;
+    // Membuat layout untuk plot
+    const layout = {
+        title: 'Hubungan antara Curah Hujan dan Produksi pada Tiap Provinsi (2015-2020)',
+        xaxis: { title: 'Curah Hujan (mm)' },
+        yaxis: { title: 'Produksi' }
     };
 
-    // Fungsi untuk mendapatkan warna acak
-    const getRandomColor = () => {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
+    // Fungsi untuk menggambar Scatter Plot
+    window.drawScatterPlot = function () {
+        // Proses data manual dan buat chart
+        const data = processData(rawData);
+        Plotly.newPlot('visualization', data, layout);
     };
-
-    // Membuat chart setelah data diambil
-    const createChart = (data) => {
-        const datasets = createDatasets(data);
-
-        const ctx = document.getElementById('scatterPlot').getContext('2d');
-        new Chart(ctx, {
-            type: 'scatter',
-            data: {
-                datasets: datasets
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Hubungan antara Curah Hujan dan Produksi pada Tiap Provinsi (2015-2020)',
-                        font: {
-                            size: 18
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function (tooltipItem) {
-                                const dataset = tooltipItem.dataset;
-                                const dataPoint = dataset.data[tooltipItem.dataIndex];
-                                return `${dataset.label}: Curah Hujan: ${dataPoint.x} mm, Produksi: ${dataPoint.y}`;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        type: 'linear',
-                        position: 'bottom',
-                        title: {
-                            display: true,
-                            text: 'Curah Hujan (mm)',
-                            font: {
-                                size: 14
-                            }
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Produksi',
-                            font: {
-                                size: 14
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    };
-
-    // Proses data manual dan buat chart
-    const data = processData(rawData);
-    createChart(data);
 });

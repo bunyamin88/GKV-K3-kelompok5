@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Visualisasi</title>
+  <!-- Load Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <h1>Data Visualisasi</h1>
+  <!-- Container untuk visualisasi -->
+  <div id="visualization" style="width: 100%; height: 100%;"></div>
+  <!-- Tombol untuk memilih visualisasi -->
+  <button onclick="showPieChart()">Pie Chart</button>
+  <button onclick="showBarChart()">Bar Chart</button>
+  <button onclick="showLineChart()">Line Chart</button>
+  <button onclick="showScatterPlot()">Scatter Plot</button> <!-- Tombol untuk scatter plot -->
+
+  <!-- Load JavaScript files -->
+  <script src="pieChart.js"></script>
+  <script src="barChart.js"></script>
+  <script src="line.js"></script>
+  <script src="scatter.js"></script> <!-- Tautkan file scatter.js -->
+  <script>
+    // Fungsi untuk menampilkan Pie Chart
+    function showPieChart() {
+      document.getElementById('visualization').innerHTML = '';
+      document.getElementById('visualization').style.display = 'block';
+      
+      // Panggil fungsi dari file pieChart.js
+      drawPieChart();
+    }
+
+    // Fungsi untuk menampilkan Bar Chart
+    function showBarChart() {
+      document.getElementById('visualization').innerHTML = '';
+      document.getElementById('visualization').style.display = 'block';
+      
+      // Panggil fungsi dari file barChart.js
+      drawBarChart();
+    }
+
+    // Fungsi untuk menampilkan Line Chart
+    function showLineChart() {
+      document.getElementById('visualization').innerHTML = '';
+      document.getElementById('visualization').style.display = 'block';
+      
+      // Panggil fungsi dari file line.js
+      drawLineChart();
+    }
+
+    // Fungsi untuk menampilkan Scatter Plot
+    function showScatterPlot() {
+      document.getElementById('visualization').innerHTML = '';
+      document.getElementById('visualization').style.display = 'block';
+      
+      // Panggil fungsi dari file scatter.js
+      drawScatterPlot();
+    }
+
+    
+  </script>
+</body>
+</html>
